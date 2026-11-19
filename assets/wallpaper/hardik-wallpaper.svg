@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hardik OS night-grid wallpaper concept</title>
+  <desc id="desc">Dark navy night sky over a distant geometric city grid, with a cyan-lit horizon and subtle teal circuit lines.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#07111a"/><stop offset=".58" stop-color="#101e2b"/><stop offset="1" stop-color="#07151d"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#00e1d0" stop-opacity=".23"/><stop offset="1" stop-color="#00e1d0" stop-opacity="0"/></radialGradient>
+    <linearGradient id="horizon" x2="0" y2="1"><stop stop-color="#25e6dc" stop-opacity=".32"/><stop offset=".12" stop-color="#105968" stop-opacity=".2"/><stop offset="1" stop-color="#07111a" stop-opacity="0"/></linearGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M52 0H0V52" fill="none" stroke="#57e7e0" stroke-opacity=".055" stroke-width="1"/></pattern>
+    <linearGradient id="building" x2="0" y2="1"><stop stop-color="#1a3440"/><stop offset="1" stop-color="#08121a"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="790" cy="620" rx="680" ry="320" fill="url(#glow)"/>
+  <path d="M0 610h95v-74h42v75h32V510h74v101h43v-140h91v140h51v-95h61v95h62v-169h118v169h55v-111h60v111h54v-203h104v203h50v-121h59v121h48v-173h94v173h49v-87h64v87h88v290H0z" fill="url(#building)" opacity=".94"/>
+  <path d="M0 610h1600v290H0z" fill="url(#horizon)"/>
+  <g fill="#2ce4d7" opacity=".25">
+    <path d="M112 558h12v3h-12zm0 14h12v3h-12zm143-34h5v28h-5zm58-31h8v4h-8zm0 18h8v4h-8zm118-28h12v4h-12zm0 20h12v4h-12zm132 10h9v4h-9zm20 22h9v4h-9zm212-93h10v4h-10zm0 20h10v4h-10zm0 20h10v4h-10zm146 14h8v4h-8zm120-70h10v4h-10zm0 22h10v4h-10zm0 22h10v4h-10zm154 41h8v4h-8z"/>
+  </g>
+  <g fill="none" stroke="#20cfc7" stroke-opacity=".19" stroke-width="1">
+    <path d="M0 670h230l56-28h194l45 28h180l58-34h173l54 34h210l45-27h214"/>
+    <path d="M0 714h270l36-18h139l47 18h204l47-25h165l44 25h205l41-21h402"/>
+    <path d="M160 900V740l28-28v-34m190 222V780l26-26v-52m370 198V756l40-40v-54m220 238V778l30-30v-57m240 209V736l40-40v-36"/>
+  </g>
+  <g fill="#5afff0" opacity=".43"><circle cx="286" cy="642" r="3"/><circle cx="607" cy="670" r="2.5"/><circle cx="955" cy="682" r="3"/><circle cx="1305" cy="667" r="2.5"/></g>
+  <rect width="1600" height="900" fill="url(#grid)" opacity=".45"/>
+  <path d="M0 0h1600v900H0z" fill="none" stroke="#67fff0" stroke-opacity=".06" stroke-width="3"/>
+</svg>

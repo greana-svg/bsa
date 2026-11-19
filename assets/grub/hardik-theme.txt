@@ -1,0 +1,12 @@
+# Hardik OS GRUB theme concept — specification only
+
+This is a design note, not a GRUB theme package. It captures the supplied reference's visual direction for a future implemented theme.
+
+- Background: deep navy/charcoal (#07111A to #10202C), with a restrained geometric/circuit texture.
+- Accent: teal/cyan (#2EE8DC), reserved for the selected entry, progress indicator, and focus state.
+- Text: near-white (#EDF9FA); secondary text muted blue-gray (#9DB9C2).
+- Menu: four concise entries centered-left in a translucent dark panel with clear keyboard focus.
+- Timing: 5-second timeout, first live entry as default, editable kernel options enabled.
+- Accessibility: high contrast and visible focus outline; do not rely on color alone.
+
+Implementation still requires an actual theme file, correct upstream boot paths, and UEFI/OVMF testing. None is present in this starter kit.

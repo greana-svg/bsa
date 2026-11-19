@@ -1,0 +1,11 @@
+# Large Android platform source/build directories
+out/
+android-x86/
+hardik-os-work/
+.repo/
+.repo-*
+
+# Machine-specific build logs and editor/runtime artifacts
+logs/*.log
+*.swp
+.DS_Store

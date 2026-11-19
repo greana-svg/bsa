@@ -1,0 +1,73 @@
+name: Build Android-x86 base ISO
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_url:
+        description: "Verified Android-x86 manifest URL (default is the URL documented upstream)"
+        required: false
+        type: string
+        default: "https://git.osdn.net/gitroot/android-x86/manifest"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hardik-android-x86-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Configure a GitHub larger runner or trusted self-hosted runner with this
+    # custom label. Minimum guard: x86_64 Linux, 64 GiB available RAM and at
+    # least 400 GiB free before source sync. Do not use standard ubuntu-latest.
+    runs-on: hardik-android-build
+    timeout-minutes: 360
+    env:
+      HARDIK_WORK_DIR: ${{ runner.temp }}/hardik-os-work
+      HARDIK_SYNC_JOBS: "8"
+      HARDIK_BUILD_JOBS: "8"
+      HARDIK_MANIFEST_URL: ${{ inputs.manifest_url }}
+
+    steps:
+      - name: Check out Hardik OS build scripts
+        uses: actions/checkout@v4
+
+      - name: Inspect runner and enforce the pre-checkout resource gate
+        run: |
+          uname -a
+          nproc
+          free -h
+          df -h "$RUNNER_TEMP"
+          ./scripts/check-build-host.sh "$HARDIK_WORK_DIR"
+
+      - name: Install Android-x86 build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            repo git-core gnupg flex bison build-essential zip curl \
+            zlib1g-dev libc6-dev-i386 x11proto-core-dev libx11-dev \
+            lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
+            fontconfig lib32stdc++6 libelf-dev mtools libssl-dev \
+            syslinux-utils squashfs-tools python3-mako
+
+      - name: Sync Android-x86 r-x86 source
+        run: ./scripts/fetch-source.sh
+
+      - name: Build x86_64 ISO
+        env:
+          # After checkout, reserve 150 GiB free for build output rather than
+          # reapplying the 400-GiB pre-sync threshold.
+          HARDIK_MIN_DISK_GB: "150"
+          HARDIK_MIN_RAM_GB: "64"
+        run: ./scripts/build-iso.sh
+
+      - name: Upload ISO and SHA-256 file
+        uses: actions/upload-artifact@v4
+        with:
+          name: hardik-android-x86-base-${{ github.sha }}
+          path: |
+            ${{ env.HARDIK_WORK_DIR }}/out/target/product/android_x86_64/android_x86_64.iso
+            ${{ env.HARDIK_WORK_DIR }}/out/target/product/android_x86_64/android_x86_64.iso.sha256
+          if-no-files-found: error
+          retention-days: 14
